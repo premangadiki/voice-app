@@ -37,7 +37,7 @@ recognition.onresult = function(event){
      width:360,
      height:250,
      image_format:'jpeg',
-     jpeg_quality=100
+     jpeg_quality:100
  });
 
  function snapshot(){
