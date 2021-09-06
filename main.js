@@ -21,10 +21,14 @@ recognition.onresult = function(event){
 
  function speak(){
      var synth = window.speechSynthesis;
-     speak_data = "taking your selfie in 5 seconds";
+     var speak_data = "taking your selfie in 5 seconds";
      var utterthis = new SpeechSynthesisUtterance(speak_data);
     synth.speak(utterthis);
     Webcam.attach(camera);
+    setTimeout(function(){
+        snapshot();
+        save();
+    },5000);
  }
 
  camera=document.getElementById("camera");
@@ -36,4 +40,15 @@ recognition.onresult = function(event){
      jpeg_quality=100
  });
 
- 
+ function snapshot(){
+     Webcam.snap(function(data_uri){
+         document.getElementById("result").innerHTML ='<img id="selfie_img" src="'+data_uri+'"/>';
+     });
+ }
+
+ function save(){
+     link = document.getElementById("link");
+     image = document.getElementById("selfie_img").src;
+     link.href=image;
+     link.click();
+ }
